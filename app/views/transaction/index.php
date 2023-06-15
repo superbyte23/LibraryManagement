@@ -14,11 +14,21 @@ switch ($view) {
     break;
 
   case 'borrows':
-    if (isset($_GET['status'])) {
-      $transactions = $borrow->filter_by_status($_GET['status']);
+
+    if ($_SESSION['usertype'] == 'student') {
+      
+      if (isset($_GET['status'])) {
+        $transactions = $borrow->filter_by_status_and_student($_GET['status'], $student->student_by_user_id($_SESSION['userid'])->id);
+      }else{
+        $transactions = $borrow->get_by_student($student->student_by_user_id($_SESSION['userid'])->id);
+      }
     }else{
-      $transactions = $borrow->all();
-    }
+      if (isset($_GET['status'])) {
+        $transactions = $borrow->filter_by_status($_GET['status']);
+      }else{
+        $transactions = $borrow->all();
+      }
+    } 
     
     $pagetitle = "Transactions"; 
     $content = "borrows.php";

@@ -19,6 +19,22 @@ class Student extends DB{
 		return $stmt->fetch(PDO::FETCH_OBJ);
 	}
 
+	public function student_fullname($id){  
+		$sql = "SELECT CONCAT(`first_name`, ' ', `middle_name`, ' ', `last_name`) AS 'fullname' FROM ".self::$tbl_name." WHERE id = :id";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bindValue(':id', $id);
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_OBJ);
+	}
+
+	public function student_by_user_id($id){  
+		$sql = "SELECT * FROM ".self::$tbl_name." WHERE user_id = :id";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bindValue(':id', $id);
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_OBJ);
+	}
+
 	
 	/*---show table fields/columns---*/ 
 	function db_fields(){ 

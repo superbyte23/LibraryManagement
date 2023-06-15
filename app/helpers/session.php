@@ -23,6 +23,8 @@ function csrf_token(){
 	    	// unset($_SESSION['token']);
 	        return true;
 	    } else {
+	    	echo $_SESSION['token'].'<br>';
+	    	echo $_POST['token'].'<br>';
 	        die('Error!:Forbidden action!');
 	    }
 	} 

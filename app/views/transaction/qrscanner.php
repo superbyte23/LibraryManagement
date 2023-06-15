@@ -10,7 +10,7 @@
         </div>
         <h2 class="page-title">
         <?php echo $pagetitle ? $pagetitle : 'SET TITLE'?>
-        </h2>
+        </h2> 
       </div>
       <!-- Page title actions -->
       <div class="col-auto ms-auto d-print-none">
@@ -38,10 +38,16 @@
   </div>
 </div>
 <div class="page-body">
-  <div class="container"> 
-    <div class="mb-2">
+  <div class="container">
+    <h3>NAME : <span class="fw-bold"><?php echo $student->student_fullname($_GET['student'])->fullname ?></span></h3>
+    <p>Strand / Grade / Section : 
+      <span class="fw-bold">
+        <?php echo $student->student_info($_GET['student'])->strand ?>-<?php echo $student->student_info($_GET['student'])->grade_level ?>-<?php echo $student->student_info($_GET['student'])->section ?> 
+      </span>
+    </p> 
+    <div class="mb-3">
       <div id="video-container" class="d-none text-center">
-        <video id="qr-video" class="w-50"></video>
+        <video id="qr-video" class="w-75"></video>
       </div> 
     </div> 
     <div class="mb-2">

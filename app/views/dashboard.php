@@ -93,27 +93,6 @@
               <div class="card-body">
                 <div class="row align-items-center">
                   <div class="col-auto">
-                    <span class="gradient-warning text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/message -->
-                      <?php arrow_right_left(); ?>
-                    </span>
-                  </div>
-                  <div class="col">
-                    <h4 class="fw-bold mb-0">
-                      <?php echo count($borrow->all()) ?> Total Transactions
-                    </h4>
-                    <a href="<?php echo URLROOT ?>/app/views/transaction/?view=borrows" class="fw-medium mb-0">
-                      View Full Details
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-6 col-6">
-            <div class="gradient-dark card card-sm">
-              <div class="card-body">
-                <div class="row align-items-center">
-                  <div class="col-auto">
                     <span class="gradient-teal text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
                       <?php icon_check() ?>
                     </span>
@@ -144,6 +123,28 @@
                       <?php echo count($borrow->filter_by_status('borrowed')) ?> Active Transaction
                     </h4>
                     <a href="<?php echo URLROOT ?>/app/views/transaction/?view=borrows&status=borrowed" class="fw-medium mb-0">
+                      View Full Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-xl-4 col-lg-6 col-6">
+            <div class="gradient-dark card card-sm">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <span class="gradient-warning text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                      <?php arrow_right_left(); ?>
+                    </span>
+                  </div>
+                  <div class="col">
+                    <h4 class="fw-bold mb-0">
+                      <?php echo count($borrow->all()) ?> Total Transactions
+                    </h4>
+                    <a href="<?php echo URLROOT ?>/app/views/transaction/?view=borrows" class="fw-medium mb-0">
                       View Full Details
                     </a>
                   </div>

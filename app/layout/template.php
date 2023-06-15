@@ -17,6 +17,7 @@
     <!-- confirm js -->
     <link href="<?php echo URLROOT; ?>/public/dist/libs/confirm/css/jquery-confirm.min.css" rel="stylesheet">
     <script src="<?php echo URLROOT; ?>/public/dist/libs/confirm/js/jquery-confirm.min.js"></script>
+    
     <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>/public/static/favico-16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>/public/static/favico-48.png" sizes="48x48">
      

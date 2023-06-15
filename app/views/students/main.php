@@ -50,7 +50,7 @@
                   <small><span class="">Section : </span> <?php echo $data->section ?></small><br> 
                   <small><span class="fw-bold">Strand : </span> <?php echo $data->strand ?></small><br>
                 </td> 
-                <td> 
+                <td>  
                   <a href="./?view=edit&id=<?php echo $data->id ?>" class="btn p-2"><?php icon_edit(); ?> <span class="d-none d-lg-block ms-2">Edit</span></a>
                   <form  
                   onsubmit="return showConfirm('Are you sure you want to proceed?', 'warning');" 

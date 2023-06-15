@@ -9,13 +9,16 @@
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT; ?>/public/static/favicon.ico">
     <!-- CSS files -->
     <link href="<?php echo URLROOT; ?>/public/dist/css/tabler.min.css" rel="stylesheet"/> 
-    <link href="<?php echo URLROOT; ?>/public/dist/css/demo.min.css" rel="stylesheet"/> 
- 
+    <link href="<?php echo URLROOT; ?>/public/dist/css/demo.min.css" rel="stylesheet">
+    <link href="<?php echo URLROOT; ?>/public/dist/css/font.css" rel="stylesheet"> 
+    <!-- fontawesome -->
+    <link href="<?php echo URLROOT; ?>/public/dist/libs/feather-icons-web/feather.css" rel="stylesheet"/>
     <!-- jquery --> 
     <script src="<?php echo URLROOT; ?>/public/dist/libs/jquery/js/jquery-3.6.1.min.js"></script>
     <!-- confirm js -->
     <link href="<?php echo URLROOT; ?>/public/dist/libs/confirm/css/jquery-confirm.min.css" rel="stylesheet">
     <script src="<?php echo URLROOT; ?>/public/dist/libs/confirm/js/jquery-confirm.min.js"></script>
+    
     <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>/public/static/favico-16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>/public/static/favico-48.png" sizes="48x48">
     <style type="text/css">
@@ -36,45 +39,7 @@
   </head>
 </head>
 <body class="overflow-hidden d-flex flex-column ">
-  <!-- design one -->
-  <!-- 
-  <div class="row g-0 flex-fill">
-      <div class="col-12 col-lg-6 col-xl-4 border-top-wide border-primary d-flex flex-column justify-content-center">
-        <div class="container container-tight my-5 px-lg-5">   
-          <form class="" action="<?php echo URLROOT.'/app/controller/usercontroller.php?action=login'; ?>" method="post" autocomplete="off"> 
-              <div class="text-center">
-                <a href="." class="navbar-brand navbar-brand-autodark"><img src="<?php echo URLROOT; ?>/public/static/95th.png" height="250" alt=""></a>
-              </div>
-              <h1 class="text-center">E-JUDGING SYSTEM</h1>
-              <h2 class="card-title text-center mb-4">Login your account</h2>
-              <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" class="form-control" placeholder="Enter username" name="username" autocomplete="off">
-              </div>
-              <div class="mb-2">
-                <label class="form-label">
-                  Password
-                </label>
-                <div class="input-group input-group-flat">
-                  <input type="text" class="form-control input-password"  placeholder="Password"  autocomplete="off" name="password" autocomplete="off">
-                </div>
-              </div>
-              <div class="form-footer">
-                <button type="submit" class="btn btn-red btn-lg w-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path><path d="M20 12h-13l3 -3m0 6l-3 -3"></path></svg>Login</button>
-              </div>  
-          </form> 
-        </div>
-      </div>
-      <div class="col-12 col-lg-6 col-xl-8 d-none d-lg-block">
-        <div class="bg-cover h-100 min-vh-100 bg-login" ></div>
-      </div>
-    </div> -->
-
-    <!-- design two -->
-
-
-    <div class="page page-center bg-dark text-dark">
+  <div class="page page-center bg-dark text-dark">
       <div class="container-tight py-4">
         <form class="card card-md" style="background: rgb(255 255 255 / 90%);" action="<?php echo URLROOT.'/app/controller/usercontroller.php?action=login'; ?>" method="post" autocomplete="off">
           <div class="card-body">
@@ -85,9 +50,21 @@
               <a href="." class="navbar-brand navbar-brand-autodark"><img src="<?php echo URLROOT; ?>/public/static/book_dark.png" class="img-fluid" alt="logo" /></a> 
             </div>
             <!-- <h1 class="text-center text-uppercase"><?php echo APPNAME ?></h1> -->
-            <h2 class="card-title text-center mb-4">Login your account</h2>
+            <h2 class="text-center mb-4">Login your account</h2>
+            <?php if (isset($_SESSION['success_register'])): ?>
+              <div class="toast align-items-center show bg-success mb-3 border-0 w-100">
+                <div class="d-flex">
+                  <div class="toast-body">
+                    <?php echo $_SESSION['success_register']; ?>
+                  </div>
+                  <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+              </div>  
+            <?php unset($_SESSION['success_register']); ?>
+            <?php endif ?> 
+
             <?php if (isset($_SESSION['error_login'])): ?>
-              <div class="toast align-items-center show bg-danger mb-3 border-0">
+              <div class="toast align-items-center show bg-danger mb-3 border-0 w-100">
                 <div class="d-flex">
                   <div class="toast-body">
                     Invalid Username and Password
@@ -96,6 +73,7 @@
                 </div>
               </div>  
             <?php unset($_SESSION['error_login']); ?>
+
             <?php endif ?> 
             <div class="mb-3">
               <label class="form-label">Username</label>
@@ -110,11 +88,14 @@
               </div>
             </div>
             <div class="form-footer mb-3">
-              <button type="submit" class="btn btn-green w-100">
+              <button type="submit" class="btn btn-primary w-100">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path><path d="M20 12h-13l3 -3m0 6l-3 -3"></path></svg>Login</button>
+            </div>
+            <div class="text-center text-muted mt-3">
+              Don't have account yet? <a href="./register.php" tabindex="-1">Sign up</a>
             </div> 
           </div>
-        </form> 
+        </form>
       </div>
     </div>
   <div class="toast-container position-fixed top-20 start-30 p-3">

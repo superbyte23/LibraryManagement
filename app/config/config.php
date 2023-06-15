@@ -3,9 +3,9 @@
   define('APPROOT', dirname(dirname(__FILE__)));
   // URL Root
   
-  define('URLROOT', 'https://'.$_SERVER['SERVER_ADDR'].'/book');
+  define('URLROOT', 'http://'.$_SERVER['SERVER_ADDR'].'/book');
 
-  define('SERVERADDRESS', 'https://'.$_SERVER['REMOTE_ADDR'].'/book');
+  define('SERVERADDRESS', 'http://'.$_SERVER['REMOTE_ADDR'].'/book');
 
   // define('URLROOT', 'http://localhost/book-a-book'); 
   // pulblic folder

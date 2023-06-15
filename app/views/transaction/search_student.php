@@ -86,7 +86,7 @@
                       <span>${val.strand} ${val.grade_level}-${val.section}</span>
                     </div>
                     <div class="col-2 ms-auto text-end">
-                      <button class="btn">Select Student</button>  
+                      <button class="btn d-none d-lg-block">Select Student</button>  
                     </div>
                   </div>
                 </a>

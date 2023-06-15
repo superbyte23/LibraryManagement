@@ -4,7 +4,7 @@ $user = new User($db);
 $action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : '';
 switch ($action) {
 	case 'add':
-		csrf_token(); 
+		 
 		$run = $user->store($_POST);
 		if ($run > 0) { 
 			msgbox('success', 'Success!', 'User added successfully.');
@@ -15,7 +15,7 @@ switch ($action) {
 		break;
 
 	case 'edit': 
-		csrf_token();
+		
 		$run = $user->change($_POST);
 		if ($run > 0) { 
 			msgbox('success', 'Success!', 'User updated successfully.');
@@ -26,7 +26,7 @@ switch ($action) {
 		break;
 
 	case 'destroy':
-		csrf_token();
+		
 		$run = $user->destroy($_POST['id']);
 		if ($run > 0) { 
 			msgbox('success', 'Success!', 'User deleted successfully!');
@@ -37,7 +37,7 @@ switch ($action) {
 		break;
 
 	case 'login':
-		csrf_token();
+		
 		$run = $user->login($_POST['username'], $_POST['password']);
 		if ($run > 0) { 
 			header('location: '.URLROOT.'/app/views');
@@ -49,7 +49,7 @@ switch ($action) {
 		break;
 
 	case 'register':
-		csrf_token();
+		
 		$run = $user->register($_POST);
 		if ($run > 0) { 
 			header('location: '.URLROOT.'/app/views');

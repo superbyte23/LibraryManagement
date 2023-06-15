@@ -2,8 +2,7 @@
 class Borrow extends DB{
 	function __construct(DB $conn){
 		$this->conn = $conn->conn; 
-	}
-
+	} 
 
 	protected static $tbl_name = "borrows";
 	// Select All
@@ -21,6 +20,17 @@ class Borrow extends DB{
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_OBJ);
 	}
+	
+	public function filter_by_status_and_student($status, $id){  
+		$sql = "SELECT * FROM ".self::$tbl_name." WHERE status = :status AND student_id = :id";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bindValue(':status', $status);
+		$stmt->bindValue(':id', $id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_OBJ);
+	}
+
+	
 
 	public function get_last_id(){  
 		$sql = "SELECT * FROM ".self::$tbl_name." ORDER BY id DESC LIMIT 1";
@@ -35,6 +45,14 @@ class Borrow extends DB{
 		$stmt->bindParam(':id', $id);
 		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_OBJ);
+	}
+
+	public function get_by_student($id){  
+		$sql = "SELECT * FROM ".self::$tbl_name." WHERE student_id = :id";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_OBJ);
 	}
 
 	

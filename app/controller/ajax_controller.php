@@ -39,6 +39,15 @@ switch ($action) {
 		$db->setQuery($sql);
 		echo json_encode($db->results_obj());
 		break; 
+
+	case 'check_lrn':
+		$filter = $db->pdo_escape_value($_POST['lrn_no']);
+		$sql = 'SELECT * FROM `students` WHERE `lrn_no` = '.$filter;
+		$db->setQuery($sql);
+		echo json_encode($db->results_obj());
+		break; 
+		
+
 	default:
 		// code...
 		break;

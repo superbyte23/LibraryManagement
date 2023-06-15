@@ -2,7 +2,7 @@
 include '../../bootstrapper.php';
 if (!isset($_SESSION['userid'])){ 
 	redirect(URLROOT.'/app'); 
-}else{
+}else{ 
 	
 	$view = (isset($_GET['view']) && $_GET['view'] != '') ? $_GET['view'] : '';
 	 
@@ -15,6 +15,7 @@ if (!isset($_SESSION['userid'])){
 				break;
 		}
 	}else{
+		redirect(URLROOT.'/app/views/transaction/?view=borrows');
 		switch ($view) {
 			case '404':
 				$content = "404.php";

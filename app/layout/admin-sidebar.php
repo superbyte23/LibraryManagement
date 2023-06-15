@@ -24,6 +24,24 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-menu">
       <ul class="navbar-nav pt-lg-3">
+        <?php if ($_SESSION['usertype'] == 'student'): ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo URLROOT ?>" >
+              <span class="nav-link-icon d-md-none d-lg-inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+     <path d="M4 4h6v8h-6z"></path>
+     <path d="M4 16h6v4h-6z"></path>
+     <path d="M14 12h6v8h-6z"></path>
+     <path d="M14 4h6v4h-6z"></path>
+  </svg>
+              </span>
+              <span class="nav-link-title">
+                My Transactions
+              </span>
+            </a>
+          </li>
+        <?php else: ?>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo URLROOT ?>" >
             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -138,7 +156,9 @@
               Users
             </span>
           </a>
-        </li> 
+        </li>
+
+        <?php endif ?>
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false" >
             <span class="nav-link-icon d-md-none d-lg-inline-block">

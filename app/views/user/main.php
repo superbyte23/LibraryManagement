@@ -41,7 +41,7 @@
           </thead>
           <tbody> 
             <?php foreach ($users as $key =>  $user): ?>
-
+              <?php if ($user->usertype != 'student'): ?>
               <tr>
                 <!-- <td><?php echo $key+1; ?></td> -->
                 <td>
@@ -61,6 +61,8 @@
                   </form>
                 </td>
               </tr> 
+                
+              <?php endif ?> 
             <?php endforeach ?> 
           </tbody>
         </table>

@@ -47,65 +47,53 @@
   </div>
 </div>
 <div class="page-body">
-  <div class="container-lg">
-    <div class="mb-2"> 
-      <input type="search" id="search-bar" name="search-bar" placeholder="Search Names" class="form-control">
-    </div>
+  <div class="container-lg"> 
     <div class="card"> 
-      <div class="accordion accordion-flush" id="accordionFlushExample">
-        <?php foreach ($transactions as $key =>  $item): ?> 
-        <div class="accordion-item"> 
-          <div class="p-3 text-decoration-none row align-items-center">
-            <div class="col-2 col-lg-1" id="row_<?php echo $key+1; ?>" ></div>
-            <div class="col">
-             <h4 class="mb-0" id="name">NAME: <?php echo $student->student_info($item->student_id)->last_name, ", ", $student->student_info($item->student_id)->first_name, " ", substr($student->student_info($item->student_id)->middle_name, 0, 1),"."; ?></h3>
-             <h4>Transaction Code: <?php echo $item->id ?></h4>
-             </div>
-             <div class="col-auto">
-               <?php echo ($item->status == 'Returned') ? '<span class="badge bg-green">Returned</span>' : '<span class="badge bg-red">Borrowed</span>' ;?>
-             </div>
-             <div class="col-auto d-none d-lg-block">
-               <p class="mb-0"><span class="fw-bold">Borrowed : </span><?php echo display_date($item->date_added, "Y-m-d"); ?></p>
-                <p class="mb-0"><span class="fw-bold">Returned : </span><?php echo display_date($item->date_returned, "Y-m-d"); ?></p> 
-             </div> 
-             <div class="col-auto d-none d-lg-block">
-               <a href="./?view=borrowDetails&borrow_id=<?php echo $item->id ?>" class="btn p-2"><?php icon_view(); ?> <span class="ms-2">View Details</span></a>
+      <div class="table-responsive">
+        <table id="table-default" class="table card-table table-vcenter text-nowrap datatable"> 
+          <thead class="thead-light">
+            <tr>
+              <th class="w-1">QR Code</th> 
+              <th>Student</th>
+              <th class="w-1">Date</th>
+              <th class="w-1">Status</th>
+              <th class="w-1">Handle</th>
+            </tr>
+          </thead>
+          <tbody> 
+            <?php foreach ($transactions as $key =>  $item): ?>
+              <tr>
+                <td id="row_<?php echo $key+1; ?>" class="img-fluid"></td>
+                <td>
+                  <p class="mb-0">
+                    <span class="fw-bold">NAME: </span>
+                    <?php echo $student->student_info($item->student_id)->last_name, ", ", $student->student_info($item->student_id)->first_name, " ", substr($student->student_info($item->student_id)->middle_name, 0, 1),"."; ?>
+                  </p>
+                  <p class="mb-0">
+                    <span>Transaction Code: </span><?php echo $item->id ?>
+                  </p> 
+                </td> 
+                <td>
+                  <p class="mb-0"><span class="fw-bold">Added : </span><?php echo display_date($item->date_added, "Y-m-d"); ?></p>
+                  <p class="mb-0"><span class="fw-bold">Returned : </span><?php echo display_date($item->date_returned, "Y-m-d"); ?></p> 
+                </td>
+                <td>
+                  <?php echo ($item->status == 'Returned') ? '<span class="badge bg-green">Returned</span>' : '<span class="badge bg-red">Borrowed</span>' ;?>   
+                </td>
+                <td>
+                  <a href="./?view=borrowDetails&borrow_id=<?php echo $item->id ?>" class="btn p-2"><?php icon_view(); ?> <span class="d-none d-lg-block ms-2">View Details</span></a>
                   <!-- <a href="./?view=edit&id=<?php echo $item->id ?>" class="btn"><i class="fa fa-edit me-1"></i> Edit</a> -->
                   <!-- <form method="POST" class="d-inline validate" action="<?php echo URLROOT.'/app/controller/'.$this_controller.'?action=update_status'?>">
                     <?php csrf(); ?>
                     <input type="hidden" name="id" value="<?php echo $item->id ?>">
                     <button type="submit" onclick="handleClick()" class="btn btn-pink p-2"><?php icon_info(); ?> <span class="d-none d-lg-block ms-2"><?php echo $item->status ?></span></button>
                   </form> -->
-             </div>
-             <div class="col-auto">
-               <a class="accordion-button collapsed btn p-0" data-bs-toggle="collapse" data-bs-target="#flush<?php echo $key ?>" aria-expanded="false" aria-controls="flush-collapseOne"></a> 
-             </div>
-          </div> 
-          <div id="flush<?php echo $key ?>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-              <div class="row align-items-center">
-                <div class="col d-lg-none d-sm-block">
-                   <p class="mb-0"><span class="fw-bold">Added : </span><?php echo display_date($item->date_added, "Y-m-d"); ?></p>
-                    <p class="mb-0"><span class="fw-bold">Returned : </span><?php echo display_date($item->date_returned, "Y-m-d"); ?></p> 
-                 </div>
-                 <!-- <div class="col-auto d-lg-none d-sm-block">
-                   <?php echo ($item->status == 'Returned') ? '<span class="badge bg-green">Returned</span>' : '<span class="badge bg-red">Borrowed</span>' ;?>
-                 </div> -->
-                 <div class="col-auto d-lg-none d-sm-block">
-                   <a href="./?view=borrowDetails&borrow_id=<?php echo $item->id ?>" class="btn p-2"><?php icon_view(); ?> <span class="ms-2">View Details</span></a>
-                      <!-- <a href="./?view=edit&id=<?php echo $item->id ?>" class="btn"><i class="fa fa-edit me-1"></i> Edit</a> -->
-                      <!-- <form method="POST" class="d-inline validate" action="<?php echo URLROOT.'/app/controller/'.$this_controller.'?action=update_status'?>">
-                        <?php csrf(); ?>
-                        <input type="hidden" name="id" value="<?php echo $item->id ?>">
-                        <button type="submit" onclick="handleClick()" class="btn btn-pink p-2"><?php icon_info(); ?> <span class="d-none d-lg-block ms-2"><?php echo $item->status ?></span></button>
-                      </form> -->
-                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <?php endforeach ?> 
-      </div>
+                </td>
+              </tr> 
+            <?php endforeach ?> 
+          </tbody>
+        </table>
+      </div>  
     </div>
   </div>
 </div>
@@ -164,14 +152,6 @@
 </script>
 <script>
   $(document).ready(function() {
-    $('#search-bar').on('keyup', function() {
-      var value = $(this).val().toLowerCase(); // Get the search bar value
-
-      $('.accordion-item').filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-      });
-    });
-
     $('.img_qr').on('click', function(){
       let img = $(this); 
       popQr(img.get(0).outerHTML);
